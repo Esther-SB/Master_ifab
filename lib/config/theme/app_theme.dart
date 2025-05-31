@@ -18,7 +18,11 @@ class AppTheme {
 final int electusColor;
 AppTheme({this.electusColor = 0});
 ThemeData getTheme() => ThemeData(
-  colorSchemeSeed: colorum[electusColor]
+  colorSchemeSeed: colorum[electusColor],
+
+  appBarTheme: const AppBarTheme(
+    centerTitle: false,
+  ),
 );
 
 }
