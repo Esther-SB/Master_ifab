@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 
-class NumeratorScreen extends StatelessWidget {
+class NumeratorScreen extends StatefulWidget {
   const NumeratorScreen({super.key});
+
+  @override
+  State<NumeratorScreen> createState() => _NumeratorScreenState();
+}
+
+class _NumeratorScreenState extends State<NumeratorScreen> {
+
+int counter = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -11,16 +19,20 @@ class NumeratorScreen extends StatelessWidget {
       ),
       body: Center(
         child: Text(
-          'Valor: 10',
+          'Valor: $counter',
           style: Theme.of(context).textTheme.titleLarge,
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          setState(() {
+            counter ++;
+          });
           // Aquí puedes agregar la lógica para incrementar el contador
         },
-        child: const Icon(Icons.add),
+        child: Icon(Icons.add),
       ),
+
     );
   }
 }
