@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:master_ifab/config/config.dart';
+import 'package:master_ifab/presentation/widgets/video_scrollable_view.dart';
 
 class VideosScreen extends StatefulWidget {
   const VideosScreen({super.key});
@@ -35,12 +36,14 @@ satusPortantes = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text('Videos Screen'),
+        //title: Text('Videos Screen'),
+        backgroundColor: Colors.transparent,
       ),
       body: satusPortantes ? const Center(
         child: CircularProgressIndicator(strokeWidth: 2,),) 
-        : const Placeholder()
+        :  VideoScrollableView(videos: videos, )
       );
     
   }
