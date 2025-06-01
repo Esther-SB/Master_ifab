@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:master_ifab/config/config.dart';
 
 class DomusScreen extends StatefulWidget {
@@ -58,6 +59,7 @@ final MenuItem menuItem;
       leading: Icon(menuItem.icon, color: colorum.primary),
       trailing: Icon(Icons.arrow_forward_ios_rounded, color: colorum.primary),
       onTap: () {
+        context.push(menuItem.link);
       },
     );
   }
