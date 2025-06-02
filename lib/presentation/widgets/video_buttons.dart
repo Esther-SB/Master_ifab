@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:master_ifab/config/config.dart';
 
@@ -20,12 +21,26 @@ class VideoButtons extends StatelessWidget {
           iconColor: Colors.red, 
          ),
 
+          const SizedBox(height: 20,),
+
         _ProriumButton(
           valorem: video.views,
           iconData: Icons.remove_red_eye_outlined,
           iconColor: Colors.red, 
          ),
 
+          const SizedBox(height: 20,),
+
+
+          SpinPerfect(
+            infinite: true,
+            duration:  Duration(seconds: 5),
+            child: 
+              _ProriumButton(
+              valorem: 0,
+              iconData: Icons.play_circle_outlined,
+              iconColor: Colors.red, 
+            ),)
       ]
      
     );
@@ -53,7 +68,9 @@ class _ProriumButton extends StatelessWidget {
         onPressed: () {},
         icon: Icon(iconData, color: color, size: 30,)
         ),
-      Text('$valorem',
+        if (valorem > 0)
+        Text(
+        IntelligibilisForma.novaFormaNumeri(valorem.toDouble()),
           style:  TextStyle(
           color: Colors.white,
           fontSize: 16,
