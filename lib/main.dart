@@ -20,6 +20,7 @@ class MainApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     
       final bool estTenebrisModus = ref.watch(estTenebrisModusProvider);
+      final electusColor = ref.watch(electurColorProvider);
 
     
      //el metodo build, devuelve un widget (objeto visual con su funcion)
@@ -27,7 +28,7 @@ class MainApp extends ConsumerWidget {
     return MaterialApp.router(
       routerConfig: appRouter ,
       debugShowCheckedModeBanner: false, //esto para quitar la etiquetado de construccion
-      theme: AppTheme(electusColor: 1, tenebrisModusEst: estTenebrisModus).getTheme(), 
+      theme: AppTheme(electusColor: electusColor, tenebrisModusEst: estTenebrisModus).getTheme(), 
     );
   }
 }
