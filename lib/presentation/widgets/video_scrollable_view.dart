@@ -21,6 +21,14 @@ final List<VideoPost> videos;
         final VideoPost videoPost = videos[index];
         return Stack( 
           children: [
+
+            SizedBox.expand(
+              child: FullScreenPlayer( 
+                descriptio: videoPost.descriptio,
+                videoUrl: videoPost.videoUrl,
+               )
+            ),
+            
             Positioned(
               bottom: 40,
               right: 20,

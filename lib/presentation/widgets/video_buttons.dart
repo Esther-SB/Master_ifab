@@ -34,7 +34,7 @@ class VideoButtons extends StatelessWidget {
 
           SpinPerfect(
             infinite: true,
-            duration:  Duration(seconds: 5),
+            duration:  Duration(seconds: 5 ),
             child: 
               _ProriumButton(
               valorem: 0,
