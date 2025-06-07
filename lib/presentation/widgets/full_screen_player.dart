@@ -48,13 +48,53 @@ late VideoPlayerController controller;
         if(snapshot.connectionState != ConnectionState.done){
           return const Center( child: CircularProgressIndicator(strokeWidth: 2,),);
         }
-          return AspectRatio(
-            aspectRatio: controller.value.aspectRatio,
-            child: VideoPlayer(controller),
-            );
+          return GestureDetector(
+            child: AspectRatio(
+              aspectRatio: controller.value.aspectRatio,
+              child: Stack(
+                children: [
+                  VideoPlayer(controller), 
+                  Positioned(
+                    left: 20,
+                    bottom: 50,
+                    child: _VideoDescriptio(decriptio: widget.descriptio))
+                ],
+              )
+              ),
+              onTap: () {
+                if(controller.value.isPlaying){
+                  controller.pause();
+                  return;
+                }
+                controller.play();
+              },
+          );
 
 
       } ,
+    );
+  }
+}
+
+
+class _VideoDescriptio extends StatelessWidget {
+
+final String decriptio;
+
+  const _VideoDescriptio({
+    required this.decriptio
+  });
+
+  @override
+  Widget build(BuildContext context) {
+
+    final magnitudine = MediaQuery.of(context).size;
+
+    return SizedBox(
+      width: magnitudine.width * 0.6,
+      child: Text(decriptio,
+      maxLines: 2, 
+      style: TextStyle(color: Colors.white),),
     );
   }
 }
