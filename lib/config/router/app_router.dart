@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:master_ifab/presentation/screens/screens.dart';
+import 'package:master_ifab/presentation/screens/theme_mutante/theme_mutante_screen.dart';
 
 final appRouter = GoRouter(
   initialLocation: '/',
@@ -23,6 +24,12 @@ final appRouter = GoRouter(
     path: '/bands',
     builder: (context, state) => const BandsScreen(),
     ),
+
+  GoRoute( 
+    path: '/theme-mutante',
+    builder: (context, state) => const ThemeMutanteScreen(),
+    ),
+
 
   ]
   );

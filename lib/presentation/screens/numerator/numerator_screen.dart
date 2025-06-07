@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:master_ifab/presentation/providers/numerator_provider.dart';
+import 'package:master_ifab/presentation/providers/provaiders.dart';
 
 
 
@@ -13,10 +13,25 @@ class NumeratorScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
 
     final int clickNumerator = ref.watch(numeratorProviders);
+    final bool estTenebrisModus = ref.watch(estTenebrisModusProvider);
 
     return Scaffold(
       appBar: AppBar(
         title: Text('Numerator Screen'),
+        actions: [
+          IconButton(
+            onPressed: (){
+
+              ref.read(estTenebrisModusProvider.notifier)
+              .update((statumTheme) => !statumTheme);
+
+            }, 
+            icon: Icon( estTenebrisModus 
+              ? Icons.dark_mode_outlined
+              : Icons.light_mode_outlined
+            )
+            )
+        ],
       ),
 
       body: Center(
