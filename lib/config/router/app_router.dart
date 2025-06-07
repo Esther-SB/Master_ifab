@@ -18,5 +18,11 @@ final appRouter = GoRouter(
     path: '/videos',
     builder: (context, state) => const VideosScreen(),
     ),
+
+  GoRoute( 
+    path: '/bands',
+    builder: (context, state) => const BandsScreen(),
+    ),
+
   ]
   );
