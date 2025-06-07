@@ -1,7 +1,7 @@
 class Band {
   final String id;
   final String nomen;
-  final int numerusVotum;
+  int numerusVotum;
 
   Band({
     required this.id,

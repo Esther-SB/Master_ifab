@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:master_ifab/config/config.dart';
 
@@ -41,16 +42,28 @@ Band(id: '4', nomen: 'Bon Jovi', numerusVotum: 5),
 
 
 
-ListTile _bandTitle(Band band){
-  return ListTile(
-    leading: CircleAvatar(
-      child: Text(
-        band.nomen.substring(0,2).toUpperCase(),
-        style: TextStyle(fontFamily: "CuppertinoSystemText", fontSize: 17),
+Widget _bandTitle(Band band){
+  return Dismissible(
+    key: Key(band.id),
+    direction: DismissDirection.startToEnd,
+    onDismissed: (direction) {
+      bands.remove(band);
+    },
+    child: ListTile(
+      leading: CircleAvatar(
+        child: Text(
+          band.nomen.substring(0,2).toUpperCase(),
+          style: TextStyle(fontFamily: "CuppertinoSystemText", fontSize: 17),
+        ),
       ),
-    ),
-    title: Text(band.nomen),
-    trailing: Text('${band.numerusVotum}', style: const TextStyle(fontSize: 20),
+      title: Text(band.nomen),
+      trailing: Text('${band.numerusVotum}', style: const TextStyle(fontSize: 20),),
+      onTap: (){
+        band.numerusVotum++;
+        setState(() {
+          
+        });
+      } ,
     ),
   );
 }
@@ -59,27 +72,39 @@ addereNovumBand(){
 
  final TextEditingController textumController = TextEditingController();
 
-  showDialog(
-    context: context, 
-    builder: (context){
-      return AlertDialog(
-        title: const Text('New band name') ,
-        content: TextField(controller: textumController,), 
-        actions: [
-          MaterialButton(
-            elevation: 5,
-            textColor: Colors.blue,
-            child: const Text('Add'),
-            onPressed: () => addereAdCollectione(textumController.text)
+ showCupertinoDialog(
+            context: context, 
+            builder: ( BuildContext context ) => CupertinoAlertDialog(
+                title: const Text('New band name'),
+                content:    CupertinoTextField(
+                    controller: textumController,
+                    style: TextStyle(
+                        color: Theme.of(context).brightness == Brightness.dark 
+                            ? Colors.white 
+                            : Colors.black
+                        )
+                ),
+                actions: [
+                    CupertinoDialogAction(
+                        isDefaultAction: true,
+                        child: const Text('Add'),
+                        onPressed: () {
+                            addereBandAdCollectione(textumController.text);
+                        }
+                    ),
+                    CupertinoDialogAction(
+                        isDestructiveAction: true,
+                        child: const Text('Close'),
+                        onPressed: () => Navigator.of(context).pop(),
+                    ),
+                ],
             )
-        ],
-      );
-    },
-    );
+        );
+  
 }
 
 
-void addereAdCollectione(String nomen){
+void addereBandAdCollectione(String nomen){
 
   if(nomen.length > 1) {
 
