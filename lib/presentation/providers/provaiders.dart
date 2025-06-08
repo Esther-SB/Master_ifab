@@ -9,3 +9,4 @@ export './sensores/gyroscope_sphera_dart.dart';
 
 export './locus_provider.dart';
 export './locus_vigilia_provider.dart';
+export './pokemon_index_providers.dart';

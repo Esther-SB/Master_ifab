@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:master_ifab/presentation/providers/provaiders.dart';
 
 class PokemonsScreen extends StatelessWidget {
   const PokemonsScreen({super.key});
@@ -12,14 +14,14 @@ class PokemonsScreen extends StatelessWidget {
   }
 }
 
-class PokemonsVisum extends StatefulWidget {
+class PokemonsVisum extends ConsumerStatefulWidget {
   const PokemonsVisum({super.key});
 
   @override
-  State<PokemonsVisum> createState() => _PokemonsVisumState();
+  PokemonsVisumState createState() => PokemonsVisumState();
 }
 
-class _PokemonsVisumState extends State<PokemonsVisum> {
+class PokemonsVisumState extends ConsumerState<PokemonsVisum> {
 
   final scrollController = ScrollController();
 
@@ -38,13 +40,28 @@ class _PokemonsVisumState extends State<PokemonsVisum> {
       ],
     );
   }
+
+
+  Future vadeProximamPagina() async{
+    
+    ref.read(pokemonsIdsProviders.notifier).update((state) =>[
+      ...state,
+      ...List.generate(30, (index) => state.length + index + 1)
+    ]
+    );
+  }
+
+
 }
 
-class _PokemonGrid extends StatelessWidget {
+class _PokemonGrid extends ConsumerWidget {
   const _PokemonGrid();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+
+    final pokemonsIds = ref.watch(pokemonsIdsProviders);
+
     return SliverGrid.builder(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount
       (crossAxisCount: 3,
@@ -56,14 +73,13 @@ class _PokemonGrid extends StatelessWidget {
           onTap: () {
             context.push('/request/${index+1}'); // Navigate to the Pokemon screen with the index as ID
           },
-          child: Container(
-            color: Colors.blue,
-            child: Center(
-                  child: Text('${index+1}'),
-            ),
+          child: Image.network(
+            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonsIds[index]}.png',
+            fit: BoxFit.contain,
           ),
         );
       },
+      itemCount: pokemonsIds.length,
     );
   }
 }
