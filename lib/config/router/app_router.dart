@@ -30,6 +30,10 @@ final appRouter = GoRouter(
     builder: (context, state) => const ThemeMutanteScreen(),
     ),
 
+  GoRoute( 
+    path: '/sensors',
+    builder: (context, state) => const SensoresScreen(),
+    ),
 
   ]
   );
