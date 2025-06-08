@@ -1,4 +1,6 @@
+import 'package:master_ifab/presentation/providers/sensores/gyroscope_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SensoresScreen extends StatefulWidget {
   const SensoresScreen({super.key});
@@ -27,11 +29,14 @@ class _SensoresScreenState extends State<SensoresScreen> {
   }
 }
 
-class Gyroscope extends StatelessWidget {
+class Gyroscope extends ConsumerWidget {
   const Gyroscope({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+
+    final gyroscope$ = ref.watch(gyroscopeProvider);
+
     return Scaffold(
       body: Column(
         children: [
@@ -47,16 +52,18 @@ class Gyroscope extends StatelessWidget {
           ),
           SizedBox(height: 30),
           Center(
-            child: Text(
-              '''
-x:10
-y:35
-z:97
-''',
-              style: TextStyle(fontSize: 30, color: Colors.grey),
-            ),
+            child:gyroscope$.when(
+              data: (value) => Text(
+                value.toString(), 
+                style: TextStyle(fontSize: 30, color: Colors.grey),
+                ),
+                error: (error, StackTrace) => Text('$error'),
+              loading: () => const CircularProgressIndicator(),
+                
+              
+            
           ),
-        ],
+      )],
       ),
     );
   }
