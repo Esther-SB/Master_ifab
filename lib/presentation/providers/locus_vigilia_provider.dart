@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 
 
-final userLocureProvider = FutureProvider.autoDispose<(double, double)>((ref)async {
+final vigiliaLocureProvider = StreamProvider.autoDispose<(double, double)>((ref)async* {
 
 
   bool serviceEnabled;
@@ -20,7 +20,7 @@ final userLocureProvider = FutureProvider.autoDispose<(double, double)>((ref)asy
     permission = await Geolocator.requestPermission();
     if (permission == LocationPermission.denied) {
      
-      return Future.error('Location permissions are denied');
+      //return Future.error('Location permissions are denied');
     }
   }
   
@@ -32,10 +32,14 @@ final userLocureProvider = FutureProvider.autoDispose<(double, double)>((ref)asy
 
   // When we reach here, permissions are granted and we can
   // continue accessing the position of the device.
-final locus = await Geolocator.getCurrentPosition();
 
-  return (locus.latitude, locus.longitude);
+  //return (locus.latitude, locus.longitude);
+  await for (final location in Geolocator.getPositionStream()) {
+    yield (location.latitude, location.longitude);
+  }
+  
+  });
 
 
-});
+
 
