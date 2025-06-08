@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:master_ifab/presentation/providers/sensores/gyroscope_sphera_dart.dart';
 import 'package:master_ifab/presentation/screens/screens.dart';
@@ -44,6 +45,19 @@ final appRouter = GoRouter(
     GoRoute( 
     path: '/location',
     builder: (context, state) => const LocusScreen(),
+    ),
+
+     GoRoute( 
+    path: '/request',
+    builder: (context, state) => const PokemonsScreen(),
+    routes: [
+      GoRoute(
+        path: ':id',
+        builder: (context, state) {
+          final id = state.pathParameters['id'] ?? '1';
+          return PokemonScreen(pokemonId: id,);
+      },)
+    ]
     ),
 
   ]
