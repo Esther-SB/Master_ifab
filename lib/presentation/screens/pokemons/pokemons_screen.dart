@@ -23,7 +23,27 @@ class PokemonsVisum extends ConsumerStatefulWidget {
 
 class PokemonsVisumState extends ConsumerState<PokemonsVisum> {
 
+  bool oneratusEst = false;
+
   final scrollController = ScrollController();
+  @override
+  void initState() {
+    
+    scrollController.addListener(() {
+      if (scrollController.position.pixels + 200 > scrollController.position.maxScrollExtent - 100) {
+        vadeProximamPagina();
+      }
+    });
+    super.initState();
+  }
+
+@override
+  void dispose() {
+    scrollController.dispose();
+
+    super.dispose();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -43,14 +63,28 @@ class PokemonsVisumState extends ConsumerState<PokemonsVisum> {
 
 
   Future vadeProximamPagina() async{
+
+    if (oneratusEst) return; // Prevent multiple calls
+    oneratusEst = true; // Set the flag to true to prevent further calls
+
+    await Future.delayed(const Duration(seconds: 2));
     
     ref.read(pokemonsIdsProviders.notifier).update((state) =>[
       ...state,
       ...List.generate(30, (index) => state.length + index + 1)
-    ]
-    );
+    ]);
+    oneratusEst = false;
+    movereScrollAsdDescendit(); // Reset the flag after the operation is complete
   }
 
+void movereScrollAsdDescendit(){
+  if(scrollController.position.pixels + 100 <= scrollController.position.maxScrollExtent)return;
+  scrollController.animateTo(
+    scrollController.position.pixels + 200,
+    duration: const Duration(milliseconds: 300),
+    curve: Curves.fastOutSlowIn,
+  );
+}
 
 }
 
