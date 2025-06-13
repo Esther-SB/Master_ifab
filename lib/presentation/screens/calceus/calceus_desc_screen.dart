@@ -15,7 +15,11 @@ class CalceusDescScreen extends StatelessWidget {
         children: [
           Stack(
             children: [
-              CalceusPraevidere(screenCompletaEst: true,),
+
+              const Hero(
+
+                tag: 'zapato-1',
+                child: CalceusPraevidere(screenCompletaEst: true,)),
               Positioned(
                 top: 60,
 
@@ -108,14 +112,14 @@ class _ColoresEtAlterButton extends StatelessWidget {
            Positioned(
             left: 90,
             child:         
-            _ActioButtonCOlor(color: Color.fromARGB(255, 198, 214, 66), index: 0),
+            _ActioButtonCOlor(color: Color.fromARGB(255, 198, 214, 66), index: 4),
 
               ),
 
                Positioned(
             left: 60,
             child:         
-            _ActioButtonCOlor(color: Color.fromARGB(255, 255, 173, 41), index: 1),
+            _ActioButtonCOlor(color: Color.fromARGB(255, 255, 173, 41), index: 3),
 
               ),
 
@@ -130,7 +134,7 @@ class _ColoresEtAlterButton extends StatelessWidget {
 
 
           
-            _ActioButtonCOlor(color: Color.fromARGB(255, 54, 77, 86), index: 3),
+            _ActioButtonCOlor(color: Color.fromARGB(255, 54, 77, 86), index: 1),
 
                
           ],
@@ -160,10 +164,14 @@ class _ActioButtonCOlor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 45,
-      height: 45,
-      decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+    return FadeInLeft(
+      delay: Duration(milliseconds: index * 100),
+      duration: const Duration(microseconds: 300),      
+      child: Container(
+        width: 45,
+        height: 45,
+        decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+      ),
     );
   }
 }
