@@ -46,7 +46,9 @@ class CalceusDescScreen extends StatelessWidget {
                     yet. offering more air underfoot for unimaginable, all-day comfort. Has Air Max
                     gone too far? We hope so."""
                   ),
-                  _PrettiumEtBuyNow()
+                  _PrettiumEtBuyNow(),
+                  _ColoresEtAlterButton(),
+                  _ButtonsLikeCartSettings(),
               ],
             ),
           ))
@@ -85,6 +87,135 @@ class _PrettiumEtBuyNow extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _ColoresEtAlterButton extends StatelessWidget {
+
+
+
+  const _ColoresEtAlterButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30),
+      child: Row(
+        children: [
+        Expanded(child: Stack(
+          children: [
+           Positioned(
+            left: 90,
+            child:         
+            _ActioButtonCOlor(color: Color.fromARGB(255, 198, 214, 66), index: 0),
+
+              ),
+
+               Positioned(
+            left: 60,
+            child:         
+            _ActioButtonCOlor(color: Color.fromARGB(255, 255, 173, 41), index: 1),
+
+              ),
+
+
+                  Positioned(
+            left: 30,
+            child:         
+            _ActioButtonCOlor(color: Color.fromARGB(255, 32, 153, 241), index: 2),
+
+              ),
+
+
+
+          
+            _ActioButtonCOlor(color: Color.fromARGB(255, 54, 77, 86), index: 3),
+
+               
+          ],
+        )),
+
+
+        const ButtonAurantius(
+          textus: 'More related items',
+          altus: 30,
+          latitus: 170,
+          color: Color.fromARGB(255, 255, 198, 17),
+          )
+      ],
+      ),
+    );
+  }
+}
+
+class _ActioButtonCOlor extends StatelessWidget {
+  final Color color;
+  final int index;
+
+  const _ActioButtonCOlor({
+    required this.color,
+    required this.index,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 45,
+      height: 45,
+      decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+    );
+  }
+}
+
+class _ButtonsLikeCartSettings extends StatelessWidget {
+  const _ButtonsLikeCartSettings();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 30),
+      padding: const EdgeInsets.symmetric(horizontal: 30),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          _ButtonCumUmbra(icon: Icon(Icons.stars, color: Colors.red , size: 25,) ),
+          _ButtonCumUmbra(icon: Icon(Icons.add_shopping_cart, color: Colors.grey.withValues(alpha: 0.4) , size: 25,) ),
+          _ButtonCumUmbra(icon: Icon(Icons.settings, color: Colors.grey.withValues(alpha: 0.4) , size: 25,) ),
+
+
+        ],
+      ),
+    );
+  }
+}
+
+class _ButtonCumUmbra extends StatelessWidget {
+
+final Icon icon;
+
+  const _ButtonCumUmbra({
+    required this.icon
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 55,
+      height: 55,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        shape: BoxShape.circle,
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.black12, 
+            spreadRadius: -5, 
+            blurRadius: 20, 
+            offset: Offset(0, 10)
+            )
+        ]
+      ),
+      child: icon,
     );
   }
 }
