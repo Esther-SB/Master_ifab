@@ -52,7 +52,7 @@ class CalceusDescScreen extends StatelessWidget {
                     yet. offering more air underfoot for unimaginable, all-day comfort. Has Air Max
                     gone too far? We hope so."""
                   ),
-                  _PrettiumEtBuyNow(),
+                  _PrettiumEtBuyNow(pretium: 180.0),
                   _ColoresEtAlterButton(),
                   _ButtonsLikeCartSettings(),
               ],
@@ -66,8 +66,8 @@ class CalceusDescScreen extends StatelessWidget {
 }
 
 class _PrettiumEtBuyNow extends StatelessWidget {
-  const _PrettiumEtBuyNow();
-
+   final double pretium; 
+const _PrettiumEtBuyNow({required this.pretium});
   @override
   Widget build(BuildContext context) {
     return Padding(

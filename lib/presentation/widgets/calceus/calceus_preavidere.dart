@@ -53,14 +53,14 @@ class _CalceusCumUmbra extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
 
-    final CalceusState = ref.watch(calceusProvider);
+    final calceusState = ref.watch(calceusProvider);
 
     return Padding(
       padding: const EdgeInsets.only(top: 30),
       child: Stack(
         children: [
           Positioned(bottom: 10, right: 0, child: _UmbraProjecta()),
-          Image(image: AssetImage(CalceusState.AssetImago), width: 320, height: 320, fit: BoxFit.cover,)
+          Image(image: AssetImage(calceusState.assetImago), width: 320, height: 320, fit: BoxFit.cover,)
         ],
       ),
     );
@@ -125,7 +125,7 @@ class _HaecMensura extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
 
-    final CalceusState =  ref.watch(calceusProvider);
+    final calceusState =  ref.watch(calceusProvider);
 
     return GestureDetector(
       onTap: () {
@@ -136,11 +136,11 @@ class _HaecMensura extends ConsumerWidget {
         width: 45,
         height: 45,
         decoration: BoxDecoration(
-          color: numerus == CalceusState.mensura ? Color.fromARGB(255, 241, 162, 58) : Colors.white,
+          color: numerus == calceusState.mensura ? Color.fromARGB(255, 241, 162, 58) : Colors.white,
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
-              color: numerus == CalceusState.mensura ? Color.fromARGB(255, 226, 106, 42) : Color.fromARGB(255, 241, 162, 58),
+              color: numerus == calceusState.mensura ? Color.fromARGB(255, 226, 106, 42) : Color.fromARGB(255, 241, 162, 58),
               
               blurRadius: 10,
               offset: Offset(0, 5)
@@ -150,7 +150,7 @@ class _HaecMensura extends ConsumerWidget {
         child: Text(
           '$numerus'.replaceAll('.0', ''),
           style: TextStyle(
-            color: numerus == CalceusState.mensura ? Colors.white : Color.fromARGB(255, 241, 162, 58)
+            color: numerus == calceusState.mensura ? Colors.white : Color.fromARGB(255, 241, 162, 58)
           ),
         ),
       ),

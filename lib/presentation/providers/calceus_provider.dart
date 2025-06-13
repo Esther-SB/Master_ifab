@@ -7,21 +7,21 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 final calceusProvider = StateNotifierProvider<CalceusNotifier, CalceusState>((ref) => CalceusNotifier());
 
 class CalceusState {
-  final String AssetImago;
+  final String assetImago;
   final double mensura;
 
   CalceusState({
-     this.AssetImago = 'assets/imagines/azul.png',
+     this.assetImago = 'assets/imagines/azul.png',
      this.mensura = 9,
   });
 
    CalceusState copyWith({
-        String? AssetImago,
+        String? assetImago,
         double? mensura
    }){
 
     return CalceusState(
-      AssetImago: AssetImago ?? this.AssetImago, 
+      assetImago: assetImago ?? this.assetImago, 
       mensura: mensura ?? this.mensura
       );
    }
@@ -32,7 +32,7 @@ class  CalceusNotifier extends StateNotifier<CalceusState> {
 
   CalceusNotifier():super(CalceusState());
   void ponereAssetImago( String valorem){
-    state = state.copyWith(AssetImago: valorem);
+    state = state.copyWith(assetImago: valorem);
   }
 
   void ponereMesura( double valorem){
